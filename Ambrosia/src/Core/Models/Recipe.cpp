@@ -2,12 +2,12 @@
 
 namespace Ambrosia::Core::Models
 {
-    Recipe::Recipe() {
-
+    Recipe::Recipe(Entities::Recipe recipe) {
+        this->recipe = recipe;
     }
 
     Recipe::~Recipe() {
-
+        
     }
 
 #pragma region "Getters"

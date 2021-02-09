@@ -14,20 +14,18 @@ namespace Ambrosia::Core
     {
         this->sql = make_unique<soci::session>("sqlite3", "dbname=test.db");
         Entities::Recipe::InitTable(*sql);
-        Entities::Recipe recipe("Test", "teasdsad");
-        Entities::Recipe recipe2("Test", "teasdsad");
-        Entities::Recipe recipe3("Test", "teasdsad");
-        Entities::Recipe recipe4("Test", "teasdsad");
-        Entities::Recipe recipe5("Test", "teasdsad");
-        Entities::Recipe recipe6("Test", "teasdsad");
 
+        Entities::Recipe recipe1("asfg", "asdaüsoif");
+        Entities::Recipe recipe2("24252", "asdaüsoif");
+        Entities::Recipe recipe3("TEasfST", "asdaüsoif");
+        Entities::Recipe recipe4("TEasfasST", "asdaüsoif");
+        Entities::Recipe recipe5("TE234ST", "asdaüsoif");
 
-        Entities::Recipe::Add(*sql, recipe);
+        Entities::Recipe::Add(*sql, recipe1);
         Entities::Recipe::Add(*sql, recipe2);
         Entities::Recipe::Add(*sql, recipe3);
         Entities::Recipe::Add(*sql, recipe4);
         Entities::Recipe::Add(*sql, recipe5);
-        Entities::Recipe::Add(*sql, recipe6);
     }
 
 #pragma region "EntityAcessors"#
@@ -47,7 +45,8 @@ namespace Ambrosia::Core
 
         for(auto i : rs)
         {
-            recipes.push_back(i);
+            Models::Recipe rec(i);
+            std::cout << rec.GetGUID() << " - " << rec.GetTitle() << "\n";
         }
 
 

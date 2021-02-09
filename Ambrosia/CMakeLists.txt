@@ -5,7 +5,8 @@ find_package(Soci REQUIRED sqlite3)
 set(AMBROSIA_SOURCES  "src/main.cpp"
                       "src/Core/Database.cpp"
                       "src/Core/Entities/EntityBase.cpp"
-                      "src/Core/Entities/Recipe.cpp")
+                      "src/Core/Entities/Recipe.cpp"
+                      "src/Core/Models/Recipe.cpp")
 
 add_executable(Ambrosia ${AMBROSIA_SOURCES})
 

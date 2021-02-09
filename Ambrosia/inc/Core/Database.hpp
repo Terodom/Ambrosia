@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 #include "Entities/Recipe.hpp"
+#include "Models/Recipe.hpp"
 
 namespace Ambrosia
 {
@@ -21,6 +22,7 @@ namespace Ambrosia
             private:
                 string connectionString;
                 unique_ptr<soci::session> sql;
+                
             public:
                 Database();
                 ~Database();

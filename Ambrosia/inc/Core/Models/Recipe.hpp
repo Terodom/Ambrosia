@@ -7,10 +7,11 @@ namespace Ambrosia::Core::Models
 {
     class Recipe {
         private:
-            Core::Entities::Recipe recipe;
+            Entities::Recipe recipe;
 
         public:
-            Recipe();
+            // TODO: Add Constructors
+            Recipe(Entities::Recipe recipe);
             ~Recipe();
 
             // Getters
@@ -25,7 +26,7 @@ namespace Ambrosia::Core::Models
             void SetTitle(std::string title);
             void SetDescription(std::string description);
 
-    }
+    };
 }
 
 #endif

@@ -15,9 +15,8 @@
 
 namespace Ambrosia::Core::Entities
 {
-    /*
-        Base class for all database entities.
-        Only inherit.
+    /**
+      @brief Base Class for all Database Interactions
     */
     class EntityBase
     {
