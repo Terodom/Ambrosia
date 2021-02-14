@@ -6,6 +6,7 @@
 #include <memory>
 #include <ctime>
 #include <chrono>
+#include <iostream>
 
 #include "soci/soci.h"
 #include "boost/uuid/uuid.hpp"

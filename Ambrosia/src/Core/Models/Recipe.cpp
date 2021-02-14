@@ -2,51 +2,46 @@
 
 namespace Ambrosia::Core::Models
 {
-    Recipe::Recipe(Entities::Recipe recipe) {
-        this->recipe = recipe;
+    Recipe::Recipe(Entities::Recipe recipe) : ModelBase(recipe) {
+        this->SetTitle(recipe.title);
+        this->SetDescription(recipe.description);
+    }
+
+    Recipe::Recipe(std::string title, std::string description) : ModelBase()
+    {
+        this->SetTitle(title);
+        this->SetDescription(description);
     }
 
     Recipe::~Recipe() {
-        
+
     }
 
-#pragma region "Getters"
-
-    boost::uuids::uuid Recipe::GetGUID() {
-        boost::uuids::string_generator gen;
-        return gen(this->recipe.guid);
-    }
-
-    std::tm Recipe::GetCreatedAt() {
-        return this->recipe.created_at;
-    }
+    #pragma region "Getters"
 
     std::string Recipe::GetTitle() {
-        return this->recipe.title;
+        return this->entity.title;
     }
 
     std::string Recipe::GetDescription() {
-        return this->recipe.description;
+        return this->entity.description;
     }
 
-#pragma endregion
-#pragma region "Setters"
+    #pragma endregion
 
-    void Recipe::SetGUID(boost::uuids::uuid guid) {
-        this->recipe.guid = boost::uuids::to_string(guid);
-    }
 
-    void Recipe::SetCreatedAt(std::tm created_at) {
-        this->recipe.created_at = created_at;
-    }
+    #pragma region "Setters"
 
     void Recipe::SetTitle(std::string title) {
-        this->recipe.title = title;
+        this->entity.title = title;
     }
 
     void Recipe::SetDescription(std::string description) {
-        this->recipe.description = description;
+        this->entity.description = description;
     }
 
-#pragma endregion
+    #pragma endregion
+
+
+    #pragma endregion
 }

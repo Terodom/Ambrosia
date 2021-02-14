@@ -1,10 +1,9 @@
 #ifndef AMBROSIA_LIB_DATABASE_HPP
-#define AMBORISA_LIB_DATABASE_HPP
+#define AMBROSIA_LIB_DATABASE_HPP
 
 #include <iostream>
 #include <stdexcept>
 
-#include "Entities/Recipe.hpp"
 #include "Models/Recipe.hpp"
 
 namespace Ambrosia
@@ -12,7 +11,6 @@ namespace Ambrosia
 
     namespace Core
     {
-        namespace Entities = Ambrosia::Core::Entities;
 
         using std::string;
         using std::unique_ptr;
@@ -22,7 +20,7 @@ namespace Ambrosia
             private:
                 string connectionString;
                 unique_ptr<soci::session> sql;
-                
+
             public:
                 Database();
                 ~Database();
@@ -31,11 +29,19 @@ namespace Ambrosia
 
                 const inline bool GetSQLInitialized() { return sql != nullptr; };
 
-#pragma region "EntityAcessors"
 
-                std::vector<Entities::Recipe> GetRecipes();
+                #pragma region "Adders"
 
-#pragma endregion
+                void Add(Models::Recipe& recipe);
+
+                #pragma endregion
+
+
+                #pragma region "EntityAcessors"
+
+                std::vector<Models::Recipe> GetRecipes();
+
+                #pragma endregion
 
         };
     }

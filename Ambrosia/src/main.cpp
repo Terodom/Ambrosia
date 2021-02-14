@@ -3,9 +3,12 @@
 int main() {
     Ambrosia::Core::Database db;
     db.Init("test.db");
-    auto test = db.GetRecipes();
-    for(auto i : test) {
-        std::cout << i.guid << "\n";
+    auto recipes = db.GetRecipes();
+
+    for(auto& recipe : recipes)
+    {
+        std::cout << recipe.GetTitle() << "\n";
     }
+
     return 0;
 }
