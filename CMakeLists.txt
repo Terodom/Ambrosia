@@ -20,5 +20,4 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 find_package(Soci REQUIRED sqlite3)
 
-add_subdirectory(lib)
 add_subdirectory(Ambrosia)
