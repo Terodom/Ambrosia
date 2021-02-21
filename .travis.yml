@@ -9,7 +9,7 @@ git:
 
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodules update --init --recursive
+  - git submodule update --init --recursive
 
 # the install step will take care of deploying a newer cmake version
 install:
