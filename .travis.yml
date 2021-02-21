@@ -10,8 +10,6 @@ compiler:
 
 addons:
   apt:
-    sources:
-      - ubnuntu-toolchain-r-test
     packages:
       - cmake
       - libsoci-dev
