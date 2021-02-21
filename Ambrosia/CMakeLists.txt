@@ -4,11 +4,8 @@
 set(CMAKE_CXX_STANDARD 17)
 
 set(AMBROSIA_SOURCES  "src/main.cpp"
-                      "src/Core/Utils/Utils.cpp"
                       "src/Core/Entities/EntityBase.cpp"
                       "src/Core/Entities/Recipe.cpp"
-                      "src/Core/Entities/MeasurementUnit.cpp"
-                      "src/Core/Entities/Ingredient.cpp"
                       "src/Core/Models/ModelBase.inl"
                       "src/Core/Models/Recipe.cpp"
                       "src/Core/Database.cpp")
