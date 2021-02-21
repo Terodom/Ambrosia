@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(Ambrosia VERSION 0.0.1)
 
-find_package(Soci REQUIRED sqlite3)
-
 # Set a default build type if none was specified
 set(default_build_type "Debug")
 if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
@@ -19,6 +17,8 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+
+find_package(Soci REQUIRED sqlite3)
 
 add_subdirectory(lib)
 add_subdirectory(Ambrosia)
