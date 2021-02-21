@@ -42,6 +42,4 @@ namespace Ambrosia::Core::Models
 
     #pragma endregion
 
-
-    #pragma endregion
 }

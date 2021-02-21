@@ -18,4 +18,5 @@ endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
+add_subdirectory(lib/soci)
 add_subdirectory(Ambrosia)

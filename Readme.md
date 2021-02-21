@@ -1,6 +1,6 @@
 # Ambrosia
 
-## C++ Recipe Management Software
+## A C++ based Recipe Management Software
 
-## Libraries
+##  Libraries used
     * SOCI

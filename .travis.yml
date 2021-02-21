@@ -3,6 +3,9 @@ language: cpp
 compiler:
   - gcc
   - clang
+  
+git:
+  submodules: false
 
 # the install step will take care of deploying a newer cmake version
 install:
