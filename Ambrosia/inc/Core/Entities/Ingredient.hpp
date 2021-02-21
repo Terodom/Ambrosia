@@ -2,7 +2,7 @@
 #define AMBROSIA_INGREDIENT_HPP
 
 #include "EntityBase.hpp"
-
+// TODO Implement Database Entity for Ingredients
 namespace Ambrosia::Core::Entities
 {
     class Ingredient : public EntityBase {
@@ -10,12 +10,8 @@ namespace Ambrosia::Core::Entities
             Ingredient();
             ~Ingredient();
 
-            std::string recipes_guid;
-
-            static void InitTable(soci::session& sql);
-            static void Add(soci::session& sql, Ingredient& ingredient);
-            static void Delete(soci::session&, Ingredient& ingredient);
-    };
+            
+    }
 }
 
 #endif

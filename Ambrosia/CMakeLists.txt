@@ -1,5 +1,4 @@
 #find_package(SQLite3 REQUIRED)
-#find_package(Soci REQUIRED sqlite3)
 
 set(CMAKE_CXX_STANDARD 17)
 

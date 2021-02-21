@@ -1,5 +1,5 @@
-#ifndef AMBROSIA_LIB_ENTITYBASE_HPP
-#define AMBROSIA_LIB_ENTITYBASE_HPP
+#ifndef AMBROSIA_ENTITYBASE_HPP
+#define AMBROSIA_ENTITYBASE_HPP
 
 #include <string>
 #include <vector>
@@ -9,13 +9,15 @@
 #include <iostream>
 
 #include "soci/soci.h"
-
-#include "Core/Utils/Utils.hpp"
+#include "boost/uuid/uuid.hpp"
+#include "boost/uuid/uuid_generators.hpp"
+#include "boost/uuid/uuid_io.hpp"
+#include "boost/lexical_cast.hpp"
 
 namespace Ambrosia::Core::Entities
 {
     /**
-    *  @brief Base Class for all Database Interactions
+      @brief Base Class for all Database Interactions
     */
     class EntityBase
     {

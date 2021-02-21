@@ -1,5 +1,5 @@
-#ifndef AMBROSIA_LIB_ENTITIES_RECIPE_HPP
-#define AMBROSIA_LIB_ENTITIES_RECIPE_HPP
+#ifndef AMBROSIA_ENTITIES_RECIPE_HPP
+#define AMBROSIA_ENTITIES_RECIPE_HPP
 
 #include "EntityBase.hpp"
 
@@ -17,8 +17,7 @@ namespace Ambrosia::Core::Entities
             std::string description;
 
             static void InitTable(soci::session& sql);
-            static void Add(soci::session& sql, Recipe& recipe);
-            static void Delete(soci::session& sql, Recipe& recipe);
+            static void Add(soci::session& sql, Recipe recipe);
     };
 }
 
@@ -28,7 +27,7 @@ namespace soci
     namespace Entities = Ambrosia::Core::Entities;
 
     template<>
-    struct type_conversion<Entities::Recipe>
+    struct type_conversion<Ambrosia::Core::Entities::Recipe>
     {
         typedef values base_type;
 
