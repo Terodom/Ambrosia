@@ -8,7 +8,8 @@ set(AMBROSIA_SOURCES  "src/main.cpp"
                       "src/Core/Entities/Recipe.cpp"
                       "src/Core/Models/ModelBase.inl"
                       "src/Core/Models/Recipe.cpp"
-                      "src/Core/Database.cpp")
+                      "src/Core/Database.cpp"
+                      "src/Core/Utils/Utils.cpp")
 
 add_executable(Ambrosia ${AMBROSIA_SOURCES})
 
