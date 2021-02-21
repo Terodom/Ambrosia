@@ -1,37 +1,23 @@
+dist: xenial
+
+os: linux
+
 language: cpp
 
 compiler:
   - gcc
   - clang
 
+addons:
+  apt:
+    sources:
+      - ubnuntu-toolchain-r-test
+    packages:
+      - cmake
+      - libsoci-dev
+
 git:
   submodules: false
-
-before_install:
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodule update --init --recursive
-
-# the install step will take care of deploying a newer cmake version
-install:
-  # first we create a directory for the CMake binaries
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
-  # we use wget to fetch the cmake binaries
-  - travis_retry wget --no-check-certificate https://cmake.org/files/v3.19/cmake-3.19.5-Linux-x86_64.tar.gz
-  # this is optional, but useful:
-  # do a quick md5 check to ensure that the archive we downloaded did not get compromised
-  - echo "ad9102717d67a0e6d72d03d2a25dbbde24386b15b7815b31068cbf5f790638f1 *cmake-3.19.5-Linux-x86_64.tar.gz" > cmake_sha256.txt
-  - sha256sum -c cmake_sha256.txt
-  # extract the binaries; the output here is quite lengthy,
-  # so we swallow it to not clutter up the travis console
-  - tar -xvf cmake-3.19.5-Linux-x86_64.tar.gz > /dev/null
-  - mv cmake-3.19.5-Linux-x86_64 cmake-install
-  # add both the top-level directory and the bin directory from the archive
-  # to the system PATH. By adding it to the front of the path we hide the
-  # preinstalled CMake with our own.
-  - PATH=${DEPS_DIR}/cmake-install:${DEPS_DIR}/cmake-install/bin:$PATH
-  # don't forget to switch back to the main build directory once you are done
-  - cd ${TRAVIS_BUILD_DIR}
 
 before_script:
   # create a build folder for the out-of-source build
