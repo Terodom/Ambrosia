@@ -6,12 +6,12 @@ namespace Ambrosia::Core::Entities
 
     }
 
-    MeasurementUnit::MeasurementUnit(std::string name) {
-        this->guid = Utils::NewGUID();
+    MeasurementUnit::MeasurementUnit(const std::string& name) {
+        this->guid = Utils::NewGUIDAsString();
     }
 
-    MeasurementUnit::MeasurementUnit(std::string guid, std::tm created_at,
-                                     std::string name) {
+    MeasurementUnit::MeasurementUnit(const std::string& guid, const std::tm& created_at,
+                                     const std::string& name) {
         this->guid = guid;
         this->created_at = created_at;
         this->name = name;
@@ -26,7 +26,7 @@ namespace Ambrosia::Core::Entities
                 "("
                     "guid NVARCHAR(255) NOT NULL PRIMARY KEY,"
                     "created_at DATETIME NOT NULL,"
-                    "name NVARCHAR(255) NOT NULL,"
+                    "name NVARCHAR(255) NOT NULL"
                 ")";
     }
 
@@ -36,7 +36,7 @@ namespace Ambrosia::Core::Entities
                 soci::use(mu.guid), soci::use(mu.created_at), soci::use(mu.name);
     }
 
-    void MeasurementUnit::Delete(soci::session& sql, MeasurementUnit& mu) {
+    void MeasurementUnit::Delete(soci::session& sql, const MeasurementUnit& mu) {
         sql << "DELETE * FROM measurement_units WHERE guid=" << mu.guid;
     }
 }

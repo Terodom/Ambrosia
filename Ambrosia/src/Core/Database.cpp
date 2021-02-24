@@ -10,43 +10,44 @@ namespace Ambrosia::Core
 
     }
 
-    void Database::Init(string connectionString)
+    void Database::Init(const std::string& connectionString)
     {
         this->sql = make_unique<soci::session>("sqlite3", "dbname=test.db");
         Entities::Recipe::InitTable(*sql);
+        Entities::MeasurementUnit::InitTable(*sql);
+        Entities::Ingredient::InitTable(*sql);
 
-        Models::Recipe recipe1("test", "teasasfst");
-        Models::Recipe recipe2("asdasf", "teasfasfst");
-        Models::Recipe recipe3("teasfasst", "teasfasfst");
-        Models::Recipe recipe4("asfasf", "teasfasfst");
-        Models::Recipe recipe5("teasfasfst", "tesasfasft");
+        Models::Recipe recipe("test", "teasasfst");
+        Models::MeasurementUnit unit("Liter");
+        Models::Ingredient ingredient("Wasser", 2, unit, recipe);
 
-        this->Add(recipe1);
-        this->Add(recipe2);
-        this->Add(recipe3);
-        this->Add(recipe4);
-        this->Add(recipe5);
+        this->Add(recipe);
+        this->Add(unit);
+        this->Add(ingredient);
     }
 
 
     #pragma region "Adders"
 
     void Database::Add(Models::Recipe& recipe) {
-        std::string guid = recipe.GetGUIDAsString();
-        std::tm created_at = recipe.GetCreatedAt();
-        std::string title = recipe.GetTitle();
-        std::string description = recipe.GetDescription();
+        auto entity = recipe.GetEntity();
+        Entities::Recipe::Add(*sql, entity);
+    }
 
-        *sql << "INSERT INTO recipes(guid, created_at, title, description)"
-            "values(:guid, :created_at, :title, :description)",
-            soci::use(guid), soci::use(created_at),
-            soci::use(title), soci::use(description);
+    void Database::Add(Models::Ingredient& ingredient) {
+        auto entity = ingredient.GetEntity();
+        Entities::Ingredient::Add(*sql, entity);
+    }
+
+    void Database::Add(Models::MeasurementUnit& measurement_unit) {
+        auto entity = measurement_unit.GetEntity();
+        Entities::MeasurementUnit::Add(*sql, entity);
     }
 
     #pragma endregion
 
 
-    #pragma region "EntityAcessors"#
+    #pragma region "EntityAcessors"
 
     std::vector<Models::Recipe> Database::GetRecipes() {
         if(!GetSQLInitialized()) {
@@ -54,9 +55,7 @@ namespace Ambrosia::Core
             throw std::runtime_error("Database not initialized");
         }
 
-
         soci::rowset<Entities::Recipe> rs = (sql->prepare << "SELECT * FROM recipes");
-
         std::vector<Models::Recipe> recipes;
 
         for(auto i : rs)
@@ -68,5 +67,40 @@ namespace Ambrosia::Core
         return recipes;
     }
 
+    std::vector<Models::Ingredient> Database::GetIngredients() {
+        if(!GetSQLInitialized()) {
+            std::cerr << "ERROR: Database not Initialized...\n";
+            throw std::runtime_error("Database not initialized");
+        }
+
+        soci::rowset<Entities::Ingredient> rs = (sql->prepare << "SELECT * FROM ingredients");
+        std::vector<Models::Ingredient> ingredients;
+
+        for(auto i : rs)
+        {
+            Models::Ingredient ingredient(i);
+            ingredients.push_back(ingredient);
+        }
+
+        return ingredients;
+    }
+
+    std::vector<Models::MeasurementUnit> Database::GetMeasurementUnits() {
+        if(!GetSQLInitialized()) {
+            std::cerr << "ERROR: Database not Initialized...\n";
+            throw std::runtime_error("Database not initialized");
+        }
+
+        soci::rowset<Entities::MeasurementUnit> rs = (sql->prepare << "SELECT * FROM measurement_units");
+        std::vector<Models::MeasurementUnit> measurement_units;
+
+        for(auto i: rs)
+        {
+            Models::MeasurementUnit measurement_unit(i);
+            measurement_units.push_back(measurement_unit);
+        }
+
+        return measurement_units;
+    }
     #pragma endregion
 }

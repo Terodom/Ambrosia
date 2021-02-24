@@ -2,12 +2,11 @@
 
 namespace Ambrosia::Core::Models
 {
-    Recipe::Recipe(Entities::Recipe recipe) : ModelBase(recipe) {
-        this->SetTitle(recipe.title);
-        this->SetDescription(recipe.description);
+    Recipe::Recipe(const Entities::Recipe& recipe) : ModelBase(recipe) {
+
     }
 
-    Recipe::Recipe(std::string title, std::string description) : ModelBase()
+    Recipe::Recipe(const std::string& title, const std::string& description) : ModelBase()
     {
         this->SetTitle(title);
         this->SetDescription(description);
@@ -32,11 +31,11 @@ namespace Ambrosia::Core::Models
 
     #pragma region "Setters"
 
-    void Recipe::SetTitle(std::string title) {
+    void Recipe::SetTitle(const std::string& title) {
         this->entity.title = title;
     }
 
-    void Recipe::SetDescription(std::string description) {
+    void Recipe::SetDescription(const std::string& description) {
         this->entity.description = description;
     }
 

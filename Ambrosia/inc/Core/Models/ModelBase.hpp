@@ -25,18 +25,19 @@ namespace Ambrosia::Core::Models
 
         public:
             ModelBase();
-            ModelBase(T entity);
+            explicit ModelBase(T entity);
 
             ~ModelBase();
+    
             // Getters
-
-            boost::uuids::uuid GetGUID();
+            T GetEntity();
+            Guid GetGUID();
             std::string GetGUIDAsString();
             std::tm GetCreatedAt();
 
             // Setters
 
-            void SetGUID(boost::uuids::uuid guid);
+            void SetGUID(Guid guid);
             void SetCreatedAt(std::tm created_at);
     };
 }

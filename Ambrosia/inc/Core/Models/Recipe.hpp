@@ -7,11 +7,9 @@
 namespace Ambrosia::Core::Models
 {
     class Recipe : public ModelBase<Entities::Recipe> {
-        private:
-
         public:
-            Recipe(Entities::Recipe recipe);
-            Recipe(std::string title, std::string description);
+            explicit Recipe(const Entities::Recipe& recipe);
+            Recipe(const std::string& title, const std::string& description);
             ~Recipe();
 
             // Getters
@@ -19,8 +17,8 @@ namespace Ambrosia::Core::Models
             std::string GetDescription();
 
             // Setters
-            void SetTitle(std::string title);
-            void SetDescription(std::string description);
+            void SetTitle(const std::string& title);
+            void SetDescription(const std::string& description);
     };
 }
 

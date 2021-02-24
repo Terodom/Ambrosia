@@ -9,8 +9,8 @@ namespace Ambrosia::Core::Entities
     class Recipe : public EntityBase {
         public:
             Recipe();
-            Recipe(std::string title, std::string description);
-            Recipe(std::string guid, std::tm created_at, std::string title, std::string description);
+            Recipe(const std::string& title, const std::string& description);
+            Recipe(const std::string& guid, const std::tm& created_at, const std::string& title, const std::string& description);
             ~Recipe();
 
             std::string title;
@@ -18,7 +18,7 @@ namespace Ambrosia::Core::Entities
 
             static void InitTable(soci::session& sql);
             static void Add(soci::session& sql, Recipe& recipe);
-            static void Delete(soci::session& sql, Recipe& recipe);
+            static void Delete(soci::session& sql, const Recipe& recipe);
     };
 }
 

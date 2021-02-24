@@ -2,19 +2,19 @@
 
 namespace Ambrosia::Core::Entities
 {
-    Recipe::Recipe() {
+    Recipe::Recipe() : EntityBase() {
 
     }
 
-    Recipe::Recipe(std::string title, std::string description) {
+    Recipe::Recipe(const std::string& title, const std::string& description) {
         this->guid = boost::lexical_cast<std::string>(Utils::NewGUID());
         this->created_at = Utils::Now();
         this->title = title;
         this->description = description;
     }
 
-    Recipe::Recipe( std::string guid, std::tm created_at,
-                    std::string title, std::string description) {
+    Recipe::Recipe( const std::string& guid, const std::tm&created_at,
+                    const std::string& title, const std::string& description) {
         this->title = title;
         this->description = description;
         this->guid = guid;
@@ -43,7 +43,7 @@ namespace Ambrosia::Core::Entities
                 soci::use(recipe.title), soci::use(recipe.description);
     }
 
-    void Recipe::Delete(soci::session& sql, Recipe& recipe) {
+    void Recipe::Delete(soci::session& sql, const Recipe& recipe) {
         sql << "DELETE * FROM recipes WHERE guid=" << recipe.guid;
     }
 }

@@ -34,14 +34,19 @@ namespace Ambrosia::Core::Models
     #pragma region "Getters"
 
     template <class T>
-    boost::uuids::uuid ModelBase<T>::GetGUID() {
+    T ModelBase<T>::GetEntity() {
+        return this->entity;
+    }
+
+    template <class T>
+    Guid ModelBase<T>::GetGUID() {
         boost::uuids::string_generator gen;
         return gen(this->entity.guid);
     }
 
     template <class T>
     std::string ModelBase<T>::GetGUIDAsString() {
-        return boost::lexical_cast<std::string>(this->GetGUID());
+        return Utils::GUIDToString(this->GetGUID());
     }
 
     template <class T>
@@ -62,7 +67,7 @@ namespace Ambrosia::Core::Models
     template <class T>
     void ModelBase<T>::SetGUID(boost::uuids::uuid guid)
     {
-        this->entity.guid = boost::uuids::to_string(guid);
+        this->entity.guid = Utils::GUIDToString(guid);
     }
 
     template <class T>
